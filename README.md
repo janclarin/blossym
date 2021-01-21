@@ -1,5 +1,13 @@
 # Blossym
 
+## Required Libraries
+-- react-bootstrap
+-- react-redux
+-- truffle
+-- ganache 
+-- Web3.js
+-- infura 
+
 ## Development setup
 
 ### Install dependencies

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
-import getWeb3 from "./getWeb3";
-
+//import SimpleStorageContract from "../../contracts/SimpleStorage.json";
+import getWeb3 from "../../getWeb3";
+import Web3Modal from "web3modal";
+import Web3 from "web3"; 
 import "./App.css";
 
 class App extends Component {
@@ -10,7 +11,20 @@ class App extends Component {
   componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
-      const web3 = await getWeb3();
+
+      const providerOptions = {
+        /* See Provider Options Section */
+      };
+
+      const web3Modal = new Web3Modal({
+        network: "mainnet", // optional
+        cacheProvider: true, // optional
+        providerOptions // required
+      });
+
+      const provider = await web3Modal.connect();
+      
+      const web3 = getWeb3();
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
