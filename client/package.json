@@ -7,6 +7,8 @@
     "react": "16.11.0",
     "react-bootstrap": "^1.4.3",
     "react-dom": "16.11.0",
+    "react-router-bootstrap": "^0.25.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.2.0",
     "web3": "1.2.2",
     "web3modal": "^1.9.3"
