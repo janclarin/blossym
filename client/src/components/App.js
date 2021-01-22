@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavHeader from "./NavHeader";
+import Creator from "./Creator";
 import Example from "./Example";
+import Fan from "./Fan";
 
 class App extends Component {
   render() {
@@ -11,7 +13,9 @@ class App extends Component {
         <NavHeader />
         <Container>
           <Switch>
-            <Route path="/" component={Example} />
+            <Route exact path="/" component={Example} />
+            <Route path="/fan" component={Fan} />
+            <Route path="/creator" component={Creator} />
           </Switch>
         </Container>
       </BrowserRouter>
