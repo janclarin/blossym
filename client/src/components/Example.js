@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SimpleStorageContract from "../contracts/SimpleStorage.json";
 import getWeb3 from "../getWeb3";
-import Web3 from "web3"; 
+import Web3 from "web3";
 import Web3Modal from "web3modal";
 import "./Example.css";
 
@@ -19,11 +19,11 @@ class Example extends Component {
       const web3Modal = new Web3Modal({
         network: "mainnet", // optional
         cacheProvider: true, // optional
-        providerOptions // required
+        providerOptions, // required
       });
 
       const provider = await web3Modal.connect();
-      
+
       const web3 = getWeb3();
 
       // Use web3 to get the user's accounts.
@@ -34,7 +34,7 @@ class Example extends Component {
       const deployedNetwork = SimpleStorageContract.networks[networkId];
       const instance = new web3.eth.Contract(
         SimpleStorageContract.abi,
-        deployedNetwork && deployedNetwork.address,
+        deployedNetwork && deployedNetwork.address
       );
 
       // Set web3, accounts, and contract to the state, and then proceed with an
@@ -43,7 +43,7 @@ class Example extends Component {
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
+        `Failed to load web3, accounts, or contract. Check console for details.`
       );
       console.error(error);
     }

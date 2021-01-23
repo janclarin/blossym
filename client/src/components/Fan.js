@@ -2,9 +2,7 @@ import React, { Component } from "react";
 
 class Fan extends Component {
   render() {
-    return (
-      <div>Fan page</div>
-    );
+    return <div>Fan page</div>;
   }
 }
 
