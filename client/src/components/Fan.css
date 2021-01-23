@@ -1,0 +1,12 @@
+.fan-container {
+  display: flex;
+  justify-content: center;
+}
+
+.support-card {
+  margin-top: 48px;
+}
+
+.support-form {
+  margin-top: 16px;
+}
