@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-//import SimpleStorageContract from "../../contracts/SimpleStorage.json";
-import getWeb3 from "../../getWeb3";
+import SimpleStorageContract from "../contracts/SimpleStorage.json";
+import getWeb3 from "../getWeb3";
 import Web3Modal from "web3modal";
 import Web3 from "web3"; 
 import "./App.css";
