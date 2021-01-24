@@ -20,7 +20,7 @@ On Windows, also run `npm install -g windows-build-tools`.
 
 1. Run `ganache-cli` in a terminal to start a local Ethereum test network (note the test public/private keys)
 2. In a separate terminal, run `truffle compile` followed by `truffle migrate`
-3. Run the web app in the client directory: `npm run start`
+3. Run the web app: `npm run start`
 
 ### Set up Metamask to connect to the local ganache test network
 
