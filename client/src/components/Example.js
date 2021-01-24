@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import SimpleStorageContract from "../contracts/SimpleStorage.json";
 import getWeb3 from "../getWeb3";
+/*
 import Web3 from "web3";
 import Web3Modal from "web3modal";
+*/
 import "./Example.css";
 
 class Example extends Component {
@@ -12,8 +14,8 @@ class Example extends Component {
     try {
       // Get network provider and web3 instance.
 
+      /*
       const providerOptions = {
-        /* See Provider Options Section */
       };
 
       const web3Modal = new Web3Modal({
@@ -23,6 +25,7 @@ class Example extends Component {
       });
 
       const provider = await web3Modal.connect();
+      */
 
       const web3 = getWeb3();
 
