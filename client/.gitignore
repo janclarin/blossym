@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# truffle-compiled contracts
+/src/contracts
+
 # production
 /build
 
