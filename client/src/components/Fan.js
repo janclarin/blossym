@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Card, Form, InputGroup } from "react-bootstrap";
+import Web3 from "web3";
 import "./Fan.css";
 
 class Fan extends Component {
@@ -13,18 +14,33 @@ class Fan extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentDidMount() {
+    // Populates creator address input field with value from URL query param.
+    const queryParams = new URLSearchParams(this.props.location.search);
+    const creatorAddress = queryParams.get("creatorAddress");
+    this.setState({ creatorAddress: creatorAddress });
+  }
+
   handleInputChange(event) {
     const target = event.target;
-    this.setState({ [target.name]: target.value });
+    switch (target.name) {
+      case "creatorAddress":
+        this.setState({ creatorAddress: target.value });
+        break;
+      case "amountValue":
+        this.setState({ amountValue: Number.parseFloat(target.value) });
+        break;
+      default:
+    }
   }
 
   isValidAddress(address) {
-    // TODO: Perform regex address validation.
-    return address.length > 0;
+    // TODO: Support ENS addresses.
+    return Web3.utils.isAddress(address);
   }
 
   isValidAmount(amount) {
-    return amount > 0.0;
+    return Number.isFinite(amount) && amount > 0.0;
   }
 
   render() {
@@ -56,9 +72,11 @@ class Fan extends Component {
               <Form.Group controlId="creatorAddress">
                 <Form.Label srOnly>Creator's ETH wallet address</Form.Label>
                 <Form.Control
-                  size="lg"
-                  type="text"
+                  name="creatorAddress"
                   placeholder="Creator's ETH address"
+                  type="text"
+                  size="lg"
+                  value={this.state.creatorAddress}
                   onChange={this.handleInputChange}
                 />
               </Form.Group>
@@ -66,6 +84,7 @@ class Fan extends Component {
                 <Form.Label srOnly>Amount in ETH</Form.Label>
                 <InputGroup>
                   <Form.Control
+                    name="amountValue"
                     size="lg"
                     type="text"
                     placeholder="0.0"
