@@ -15,9 +15,6 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-    defaults:
-      run:
-        working-directory: ./client
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -25,7 +22,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm install truffle
-    - run: ./node_modules/truffle/build/cli.bundled.js compile
     - run: npm run build
     - run: npm test
