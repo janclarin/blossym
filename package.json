@@ -3,6 +3,16 @@
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "start": "cd client && npm run start",
+    "postinstall": "cd client && npm install",
+    "prebuild": "./node_modules/truffle/build/cli.bundled.js compile",
+    "build": "cd client && npm run build",
+    "test:": "cd client && npm run test"
+  },
   "dependencies": {
     "@openzeppelin/contracts": "^3.3.0"
   },
