@@ -1,12 +1,13 @@
 # Blossym
 
 ## Required Libraries
+
 -- react-bootstrap
 -- react-redux
 -- truffle
--- ganache 
+-- ganache
 -- Web3.js
--- infura 
+-- infura
 
 ## Development setup
 
