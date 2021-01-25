@@ -18,6 +18,19 @@
     "@openzeppelin/contracts": "^3.3.0"
   },
   "devDependencies": {
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.3",
+    "prettier": "2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.3",
+    "pretty-quick": "^3.1.0",
     "truffle": "^5.1.63"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,html,css,md,sol}": "prettier --write"
   }
 }

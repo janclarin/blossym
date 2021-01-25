@@ -7,9 +7,10 @@
 /coverage
 
 # truffle-compiled contracts
-/src/contracts
+/client/src/contracts
 
 # production
+/client/build
 /build
 
 # misc
