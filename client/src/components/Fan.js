@@ -16,6 +16,9 @@ class Fan extends Component {
   }
 
   componentDidMount() {
+    if (!this.props.location) {
+      return;
+    }
     // Populates creator address input field with value from URL query param.
     const queryParams = new URLSearchParams(this.props.location.search);
     const creatorAddress = queryParams.get("creatorAddress");
@@ -60,16 +63,24 @@ class Fan extends Component {
           block
           type="button"
           onClick={this.props.onWalletConnectClick}
+          data-testid="connect-wallet-button"
         >
           Connect wallet
         </Button>
       );
-    } else if (
-      this.isValidAddress(this.state.creatorAddress) &&
-      this.isValidAmount(this.state.amountValue)
-    ) {
+    } else {
+      const disabled =
+        !this.isValidAddress(this.state.creatorAddress) ||
+        !this.isValidAmount(this.state.amountValue);
       button = (
-        <Button variant="success" size="lg" block type="submit">
+        <Button
+          variant="success"
+          size="lg"
+          block
+          type="submit"
+          disabled={disabled}
+          data-testid="send-button"
+        >
           Send
         </Button>
       );
@@ -91,6 +102,7 @@ class Fan extends Component {
                   size="lg"
                   defaultValue={this.state.creatorAddress}
                   onChange={this.handleInputChange}
+                  data-testid="creatorAddress"
                 />
               </Form.Group>
               <Form.Group controlId="amountValue">
@@ -102,6 +114,7 @@ class Fan extends Component {
                     type="text"
                     placeholder="0.0"
                     onChange={this.handleInputChange}
+                    data-testid="amountValue"
                   />
                   <InputGroup.Append>
                     <InputGroup.Text>ETH</InputGroup.Text>
