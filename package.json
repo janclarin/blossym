@@ -10,6 +10,8 @@
     "prestart": "./node_modules/truffle/build/cli.bundled.js compile",
     "start": "cd client && npm run start",
     "postinstall": "cd client && npm install",
+    "lint": "prettier --check .",
+    "fix": "prettier --write .",
     "prebuild": "./node_modules/truffle/build/cli.bundled.js compile",
     "build": "cd client && npm run build",
     "test:": "cd client && npm run test"
