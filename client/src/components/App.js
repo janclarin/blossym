@@ -5,12 +5,71 @@ import NavHeader from "./NavHeader";
 import Creator from "./Creator";
 import Example from "./Example";
 import Fan from "./Fan";
+import Web3 from "web3";
+import Web3Modal from "web3modal";
+import Fortmatic from "fortmatic";
+
+let provider = null;
+let web3 = null;
+let accounts = null;
+let mainAddress = ""; 
+
+const providerOptions = {
+  fortmatic: {
+    package: Fortmatic, // required
+    options: {
+      key: "pk_live_222B2D7CEDEEF78D" // required
+    }
+  }
+};
+
+
+
+
+
+
 
 class App extends Component {
+  constructor(props) {
+    super(props); 
+    this.connectedWallet = ""; 
+    this.state = {
+      connectedWallet: "",
+      isconnected: false 
+    }
+  }
+
+  async openWalletConnectModal() {
+    if (!provider) {
+      const web3Modal = new Web3Modal({
+        cacheProvider: true, // optional
+        providerOptions // required
+      });
+      provider = await web3Modal.connect();
+      web3 = new Web3(provider);
+    }
+  
+    if (!accounts) {
+      accounts = await web3.eth.getAccounts();
+      mainAddress = accounts[0].toLowerCase();
+      this.setState({
+        connectedWallet: mainAddress
+      });
+      
+    }
+
+  }
+
+
+
   render() {
     return (
       <BrowserRouter>
-        <NavHeader />
+        <NavHeader 
+          connectedWallet={this.state.connectedWallet}
+          onWalletConnectClick={() => this.openWalletConnectModal()}
+
+          />
         <Container>
           <Switch>
             <Route exact path="/" component={Example} />
