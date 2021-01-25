@@ -13,8 +13,12 @@
   "scripts": {
     "compile": "yarn run truffle compile",
     "start": "yarn run compile && yarn workspace client run start",
-    "lint": "yarn prettier --check .",
-    "fix": "yarn prettier --write .",
+    "lint": "run-p lint:*",
+    "lint:prettier": "yarn prettier --check .",
+    "lint:solhint": "yarn solhint ./**/*.sol",
+    "fix": "run-s fix:*",
+    "fix:prettier": "yarn prettier --write .",
+    "fix:solhint": "yarn solhint --fix ./**/*.sol",
     "build": "yarn run compile && yarn workspace client run build",
     "test": "yarn workspace client run test"
   },
