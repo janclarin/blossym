@@ -41,7 +41,7 @@ describe("send button", () => {
     render(<Fan connectedWallet={fakeValidAddress} />);
 
     const button = screen.getByTestId("send-button");
-    expect(button).toHaveAttribute("disabled", "");
+    expect(button).toBeDisabled();
   });
 
   test("renders as disabled when creator address is invalid", () => {
@@ -55,7 +55,7 @@ describe("send button", () => {
     });
 
     const button = screen.getByTestId("send-button");
-    expect(button).toHaveAttribute("disabled", "");
+    expect(button).toBeDisabled();
   });
 
   test("renders as disabled when amount is invalid", () => {
@@ -69,7 +69,7 @@ describe("send button", () => {
     });
 
     const button = screen.getByTestId("send-button");
-    expect(button).toHaveAttribute("disabled", "");
+    expect(button).toBeDisabled();
   });
 
   test("renders enabled send button when creator address and amount are valid", () => {
@@ -83,6 +83,6 @@ describe("send button", () => {
     });
 
     const button = screen.getByTestId("send-button");
-    expect(button).not.toHaveAttribute("disabled"); // Enabled
+    expect(button).toBeEnabled();
   });
 });
