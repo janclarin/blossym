@@ -12,6 +12,7 @@ class Fan extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +35,11 @@ class Fan extends Component {
     }
   }
 
+  handleSubmit() {
+    // TODO: Create Web3 transaction.
+    console.log("Submitted");
+  }
+
   isValidAddress(address) {
     // TODO: Support ENS addresses.
     return Web3.utils.isAddress(address);
@@ -44,31 +50,38 @@ class Fan extends Component {
   }
 
   render() {
-    let submitButton;
-    if (
+    let button;
+
+    if (!this.props.connectedWallet) {
+      button = (
+        <Button
+          variant="primary"
+          size="lg"
+          block
+          type="button"
+          onClick={this.props.onWalletConnectClick}
+        >
+          Connect wallet
+        </Button>
+      );
+    } else if (
       this.isValidAddress(this.state.creatorAddress) &&
       this.isValidAmount(this.state.amountValue)
     ) {
-      submitButton = (
+      button = (
         <Button variant="success" size="lg" block type="submit">
           Send
         </Button>
       );
-    } else {
-      // TODO: Check if the wallet is not connected first.
-      submitButton = (
-        <Button variant="primary" size="lg" block type="submit">
-          Connect wallet
-        </Button>
-      );
     }
+
     return (
       <div className="fan-container">
         <Card className="support-card">
           <Card.Body>
             <Card.Title>Support</Card.Title>
             <Card.Subtitle>Send crypto to your favorite creator.</Card.Subtitle>
-            <Form className="support-form">
+            <Form className="support-form" onSubmit={this.handleSubmit}>
               <Form.Group controlId="creatorAddress">
                 <Form.Label srOnly>Creator's ETH wallet address</Form.Label>
                 <Form.Control
@@ -76,7 +89,7 @@ class Fan extends Component {
                   placeholder="Creator's ETH address"
                   type="text"
                   size="lg"
-                  value={this.state.creatorAddress}
+                  defaultValue={this.state.creatorAddress}
                   onChange={this.handleInputChange}
                 />
               </Form.Group>
@@ -95,7 +108,7 @@ class Fan extends Component {
                   </InputGroup.Append>
                 </InputGroup>
               </Form.Group>
-              {submitButton}
+              {button}
             </Form>
           </Card.Body>
         </Card>
