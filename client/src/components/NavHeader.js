@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, ButtonGroup, Dropdown, Container, Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-
 class NavHeader extends Component {
   constructor(props) {
     super(props);
