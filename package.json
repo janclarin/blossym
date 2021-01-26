@@ -11,12 +11,11 @@
     "node": "14.x"
   },
   "scripts": {
-    "prestart": "yarn run truffle compile",
-    "start": "yarn workspace client run start",
+    "compile": "yarn run truffle compile",
+    "start": "yarn run compile && yarn workspace client run start",
     "lint": "prettier --check .",
     "fix": "prettier --write .",
-    "prebuild": "yarn run truffle compile",
-    "build": "yarn workspace client run build",
+    "build": "yarn run compile && yarn workspace client run build",
     "test": "yarn workspace client run test"
   },
   "dependencies": {
