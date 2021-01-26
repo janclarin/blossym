@@ -12,14 +12,16 @@
   },
   "scripts": {
     "compile": "yarn run truffle compile",
-    "start": "yarn run compile && yarn workspace client run start",
-    "lint": "run-p lint:*",
+    "start": "yarn run compile && yarn run start:client",
+    "start:client": "yarn workspace client run start",
+    "lint": "yarn run lint:prettier && yarn run lint:solhint",
     "lint:prettier": "yarn prettier --check .",
     "lint:solhint": "yarn solhint ./**/*.sol",
-    "fix": "run-s fix:*",
+    "fix": "yarn run fix:prettier && yarn run fix:solhint",
     "fix:prettier": "yarn prettier --write .",
     "fix:solhint": "yarn solhint --fix ./**/*.sol",
-    "build": "yarn run compile && yarn workspace client run build",
+    "build": "yarn run compile && yarn run build:client",
+    "build:client": "yarn workspace client run build",
     "test": "yarn workspace client run test"
   },
   "dependencies": {
