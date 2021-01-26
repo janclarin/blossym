@@ -6043,18 +6043,18 @@ __metadata:
   linkType: hard
 
 "es-get-iterator@npm:^1.0.2":
-  version: 1.1.1
-  resolution: "es-get-iterator@npm:1.1.1"
+  version: 1.1.2
+  resolution: "es-get-iterator@npm:1.1.2"
   dependencies:
-    call-bind: ^1.0.0
-    get-intrinsic: ^1.0.1
+    call-bind: ^1.0.2
+    get-intrinsic: ^1.1.0
     has-symbols: ^1.0.1
-    is-arguments: ^1.0.4
-    is-map: ^2.0.1
-    is-set: ^2.0.1
+    is-arguments: ^1.1.0
+    is-map: ^2.0.2
+    is-set: ^2.0.2
     is-string: ^1.0.5
     isarray: ^2.0.5
-  checksum: b02a6eeae04c1f0414f14463cda3871f9d65ed7ffb2938ffa76cee14296951062446187bbfbd183de369098d7bb2775130d8057f30b3c8399bdf6926888d538e
+  checksum: 0654383ebe98719c9fafe29c3e73d75fe12fedde2a96000b05406d358ec66c3635306c002a6eb7c768fc78dcc1cc79e4f938110bb12edc75b5e072e3ad940193
   languageName: node
   linkType: hard
 
@@ -6484,11 +6484,11 @@ __metadata:
   linkType: hard
 
 "ethereum-bloom-filters@npm:^1.0.6":
-  version: 1.0.8
-  resolution: "ethereum-bloom-filters@npm:1.0.8"
+  version: 1.0.9
+  resolution: "ethereum-bloom-filters@npm:1.0.9"
   dependencies:
     js-sha3: ^0.8.0
-  checksum: 230a7473d7f034abfc3862edca20738ab512e2665fb06c3d5310f94c2b967aa40d17534e59212caf7ee750feed8ceb891e48b6bde636dd5f5b0089fa87dbdd71
+  checksum: 0a1ae56da35ffaea4480a631787bb068b9dc73af4630e988e4c5e1392b0ddd4ee05a2bc8e2435c2fb9f3367c7f44882562442e0139ec6e73797c8e630ad77756
   languageName: node
   linkType: hard
 
@@ -7439,7 +7439,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"get-intrinsic@npm:^1.0.1, get-intrinsic@npm:^1.0.2":
+"get-intrinsic@npm:^1.0.1, get-intrinsic@npm:^1.0.2, get-intrinsic@npm:^1.1.0":
   version: 1.1.0
   resolution: "get-intrinsic@npm:1.1.0"
   dependencies:
@@ -8467,7 +8467,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"is-arguments@npm:^1.0.4":
+"is-arguments@npm:^1.0.4, is-arguments@npm:^1.1.0":
   version: 1.1.0
   resolution: "is-arguments@npm:1.1.0"
   dependencies:
@@ -8702,7 +8702,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"is-map@npm:^2.0.1":
+"is-map@npm:^2.0.2":
   version: 2.0.2
   resolution: "is-map@npm:2.0.2"
   checksum: 2d9b1a0b0dc19ba4486278297586200ec9f166b068bddf1e05f0c0ab9eac197fb6efac32efc2a970d1036b96fa08806337a9dd6808365a5cef6a392a88a2ca2a
@@ -8838,7 +8838,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"is-set@npm:^2.0.1":
+"is-set@npm:^2.0.2":
   version: 2.0.2
   resolution: "is-set@npm:2.0.2"
   checksum: 5fb8f3c67d7a836f992d893e8de578a16f36507941e68197a7aced7cfb33231e99bfd5dc008803c02b6f5aabe226d3e7df94172895f119e6a02b946e254adc87
@@ -15865,8 +15865,8 @@ resolve@1.12.0:
   linkType: hard
 
 "uncontrollable@npm:^7.0.0":
-  version: 7.2.0
-  resolution: "uncontrollable@npm:7.2.0"
+  version: 7.2.1
+  resolution: "uncontrollable@npm:7.2.1"
   dependencies:
     "@babel/runtime": ^7.6.3
     "@types/react": ">=16.9.11"
@@ -15874,7 +15874,7 @@ resolve@1.12.0:
     react-lifecycles-compat: ^3.0.4
   peerDependencies:
     react: ">=15.0.0"
-  checksum: 5d3c5ff0a77dcd2405b1768b7b7b606e056af1b9169848b55d901ebc46d1a0d320e11f6406b1d65b2bf0942733d63283bf0c54158de1de1803f364e151f361b5
+  checksum: 13d0eb20a7e14532c0983d5803b9e81dc9e1d0f2cf9fdc2df5c5cf36e1742a9928ec82837b46c3047a378c8cb96963bcdc0255836d70fc9be04152e6fcb85247
   languageName: node
   linkType: hard
 
