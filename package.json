@@ -3,18 +3,21 @@
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "client"
+  ],
   "engines": {
     "node": "14.x"
   },
   "scripts": {
-    "prestart": "./node_modules/truffle/build/cli.bundled.js compile",
-    "start": "cd client && npm run start",
-    "postinstall": "cd client && npm install",
+    "prestart": "yarn run truffle compile",
+    "start": "yarn workspace client run start",
     "lint": "prettier --check .",
     "fix": "prettier --write .",
-    "prebuild": "./node_modules/truffle/build/cli.bundled.js compile",
-    "build": "cd client && npm run build",
-    "test:": "cd client && npm run test"
+    "prebuild": "yarn run truffle compile",
+    "build": "yarn workspace client run build",
+    "test": "yarn workspace client run test"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^3.3.0"
