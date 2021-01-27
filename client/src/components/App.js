@@ -7,6 +7,16 @@ import Example from "./Example";
 import Fan from "./Fan";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.openWalletConnectModal = this.openWalletConnectModal.bind(this);
+  }
+
+  openWalletConnectModal() {
+    // TODO: Open web3modal and set connectedWallet when rendering Fan.
+    console.log("Opened wallet connect");
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -14,7 +24,16 @@ class App extends Component {
         <Container>
           <Switch>
             <Route exact path="/" component={Example} />
-            <Route path="/fan" component={Fan} />
+            <Route
+              path="/fan"
+              render={(routeProps) => (
+                <Fan
+                  {...routeProps}
+                  connectedWallet=""
+                  onWalletConnectClick={this.openWalletConnectModal}
+                />
+              )}
+            />
             <Route path="/creator" component={Creator} />
           </Switch>
         </Container>
