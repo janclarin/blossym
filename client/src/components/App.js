@@ -42,7 +42,6 @@ class App extends Component {
       provider = await web3Modal.connect();
       web3 = new Web3(provider);
     }
-
     if (!accounts) {
       accounts = await web3.eth.getAccounts();
       mainAddress = accounts[0].toLowerCase();
@@ -62,6 +61,8 @@ class App extends Component {
       connectedWallet: "",
     });
   }
+
+
 
   render() {
     return (
