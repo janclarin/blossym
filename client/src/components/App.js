@@ -19,7 +19,7 @@ const providerOptions = {
   fortmatic: {
     package: Fortmatic, // required
     options: {
-      key: "pk_live_222B2D7CEDEEF78D" // required
+      key: process.env.FORTMATIC_KEY // required
     }
   }
 };
