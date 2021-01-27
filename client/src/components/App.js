@@ -63,6 +63,7 @@ class App extends Component {
     provider = null;
     accounts = null; 
     web3 = null;
+    await web3Modal.clearCachedProvider();
     web3Modal = null; 
     mainAddress = ""; 
     this.setState({
