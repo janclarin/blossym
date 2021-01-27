@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Button, ButtonGroup, Dropdown, Container, Navbar, Nav } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Dropdown,
+  Container,
+  Navbar,
+  Nav,
+} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 class NavHeader extends Component {
@@ -11,32 +18,32 @@ class NavHeader extends Component {
     };
   }
 
-
   render() {
-
-    let walletButton; 
-    let formattedAddress; 
+    let walletButton;
+    let formattedAddress;
     if (!this.props.connectedWallet) {
       walletButton = (
         <Button variant="primary" onClick={this.props.onWalletConnectClick}>
-        Connect Wallet
-      </Button>
+          Connect Wallet
+        </Button>
       );
-    }
-    else {
-      formattedAddress = this.props.connectedWallet.substring(0,5) + "..." + 
-      this.props.connectedWallet.substring(39);
+    } else {
+      formattedAddress =
+        this.props.connectedWallet.substring(0, 5) +
+        "..." +
+        this.props.connectedWallet.substring(39);
       walletButton = (
         <Dropdown as={ButtonGroup}>
-            <Button variant="success">{formattedAddress}</Button>
+          <Button variant="success">{formattedAddress}</Button>
 
-            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+          <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={this.props.onDisconnectWallet}>Disconect</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={this.props.onDisconnectWallet}>
+              Disconect
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       );
     }
     return (
@@ -53,15 +60,12 @@ class NavHeader extends Component {
               <Nav.Link>Creator</Nav.Link>
             </LinkContainer>
           </Nav>
-          
-          <Nav className="justify-content-end">
-            {walletButton}
-          
-          </Nav>
+
+          <Nav className="justify-content-end">{walletButton}</Nav>
         </Container>
       </Navbar>
     );
-  } 
+  }
 }
 
 export default NavHeader;
