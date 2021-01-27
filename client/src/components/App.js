@@ -10,6 +10,7 @@ import Web3Modal from "web3modal";
 import Fortmatic from "fortmatic";
 
 let provider = null;
+let web3Modal = null; 
 let web3 = null;
 let accounts = null;
 let mainAddress = ""; 
@@ -40,7 +41,7 @@ class App extends Component {
 
   async openWalletConnectModal() {
     if (!provider) {
-      const web3Modal = new Web3Modal({
+      web3Modal = new Web3Modal({
         cacheProvider: true, // optional
         providerOptions // required
       });
@@ -58,6 +59,16 @@ class App extends Component {
     }
 
   }
+  async disconnectWallet() {
+    provider = null;
+    accounts = null; 
+    web3 = null;
+    web3Modal = null; 
+    mainAddress = ""; 
+    this.setState({
+      connectedWallet: ""
+    });
+  }
 
 
 
@@ -67,6 +78,7 @@ class App extends Component {
         <NavHeader 
           connectedWallet={this.state.connectedWallet}
           onWalletConnectClick={() => this.openWalletConnectModal()}
+          onDisconnectWallet={() => this.disconnectWallet()}
 
           />
         <Container>
