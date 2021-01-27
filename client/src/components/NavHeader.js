@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, ButtonGroup, Dropdown, Container, Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
+
 class NavHeader extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +25,8 @@ class NavHeader extends Component {
       );
     }
     else {
-      formattedAddress = this.props.connectedWallet.substring(0,5) + "...";
+      formattedAddress = this.props.connectedWallet.substring(0,5) + "..." + 
+      this.props.connectedWallet.substring(39);
       walletButton = (
         <Dropdown as={ButtonGroup}>
             <Button variant="success">{formattedAddress}</Button>
@@ -32,7 +34,7 @@ class NavHeader extends Component {
             <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Disconect</Dropdown.Item>
+              <Dropdown.Item onClick={this.props.onDisconnectWallet}>Disconect</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
 
