@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aave/protocol-js": "^2.3.1-242c9ba0c33205fd309df2e555222d70195ac453.0",
+    "@aave/protocol-js": "^2.3.1",
     "aave-js": "^1.2.1",
     "bootstrap": "^4.6.0",
     "fortmatic": "^2.2.1",
