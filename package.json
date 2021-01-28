@@ -12,10 +12,16 @@
   },
   "scripts": {
     "compile": "yarn run truffle compile",
-    "start": "yarn run compile && yarn workspace client run start",
-    "lint": "yarn prettier --check .",
-    "fix": "yarn prettier --write .",
-    "build": "yarn run compile && yarn workspace client run build",
+    "start": "yarn run compile && yarn run start:client",
+    "start:client": "yarn workspace client run start",
+    "lint": "yarn run lint:prettier && yarn run lint:solhint",
+    "lint:prettier": "yarn prettier --check .",
+    "lint:solhint": "yarn solhint ./**/*.sol",
+    "fix": "yarn run fix:prettier && yarn run fix:solhint",
+    "fix:prettier": "yarn prettier --write .",
+    "fix:solhint": "yarn solhint --fix ./**/*.sol",
+    "build": "yarn run compile && yarn run build:client",
+    "build:client": "yarn workspace client run build",
     "test": "yarn workspace client run test"
   },
   "dependencies": {
@@ -27,6 +33,7 @@
     "prettier": "2.2.1",
     "prettier-plugin-solidity": "^1.0.0-beta.3",
     "pretty-quick": "^3.1.0",
+    "solhint": "^3.3.2",
     "truffle": "^5.1.63"
   },
   "husky": {
