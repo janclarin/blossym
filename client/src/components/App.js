@@ -9,11 +9,11 @@ import Web3 from "web3";
 import Web3Modal from "web3modal";
 import Fortmatic from "fortmatic";
 
-let provider = null;
-let web3Modal = null;
-let web3 = null;
-let accounts = null;
-let mainAddress = "";
+const initialState = {
+  web3: null,
+  provider: null,
+  connectedWallet: "",
+};
 
 const providerOptions = {
   fortmatic: {
@@ -25,41 +25,44 @@ const providerOptions = {
 };
 
 class App extends Component {
+  web3Modal;
+
   constructor(props) {
     super(props);
-    this.state = {
-      connectedWallet: "",
-    };
+    this.state = { ...initialState };
+    this.web3Modal = new Web3Modal({
+      cacheProvider: true, // optional
+      providerOptions, // required
+    });
     this.openWalletConnectModal = this.openWalletConnectModal.bind(this);
   }
 
   async openWalletConnectModal() {
-    if (!provider) {
-      web3Modal = new Web3Modal({
-        cacheProvider: true, // optional
-        providerOptions, // required
-      });
-      provider = await web3Modal.connect();
+    let web3 = this.state.web3;
+    if (!web3) {
+      const provider = await this.web3Modal.connect();
       web3 = new Web3(provider);
-    }
-    if (!accounts) {
-      accounts = await web3.eth.getAccounts();
-      mainAddress = accounts[0].toLowerCase();
       this.setState({
-        connectedWallet: mainAddress,
+        provider: provider,
+        web3: web3,
+      });
+    }
+
+    if (!this.state.connectedWallet) {
+      const accounts = await web3.eth.getAccounts();
+      this.setState({
+        connectedWallet: accounts[0],
       });
     }
   }
+
   async disconnectWallet() {
-    provider = null;
-    accounts = null;
-    web3 = null;
-    await web3Modal.clearCachedProvider();
-    web3Modal = null;
-    mainAddress = "";
-    this.setState({
-      connectedWallet: "",
-    });
+    const { web3 } = this.state;
+    if (web3 && web3.currentProvider && web3.currentProvider.close) {
+      await web3.currentProvider.close();
+    }
+    await this.web3Modal.clearCachedProvider();
+    this.setState({ ...initialState });
   }
 
   render() {
@@ -78,6 +81,7 @@ class App extends Component {
               render={(routeProps) => (
                 <Fan
                   {...routeProps}
+                  provider={this.state.provider}
                   connectedWallet={this.state.connectedWallet}
                   onWalletConnectClick={this.openWalletConnectModal}
                 />
