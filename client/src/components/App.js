@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavHeader from "./NavHeader";
 import Creator from "./Creator";
-import Example from "./Example";
+import Home from "./Home";
 import Fan from "./Fan";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
@@ -72,7 +72,7 @@ class App extends Component {
         />
         <Container>
           <Switch>
-            <Route exact path="/" component={Example} />
+            <Route exact path="/" component={Home} />
             <Route
               path="/fan"
               render={(routeProps) => (
