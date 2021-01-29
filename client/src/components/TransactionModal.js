@@ -16,6 +16,7 @@ class TransactionModal extends Component {
   };
 
   getEtherscanUrl = (transactionHash) => {
+    // TODO: Support test network chains.
     return `https://etherscan.io/tx/${transactionHash}`;
   };
 
