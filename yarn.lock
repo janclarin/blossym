@@ -3999,6 +3999,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bootswatch@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "bootswatch@npm:4.6.0"
+  checksum: fcc644850044c3f9053bc1fd6aa431217b90c3d037632c17b43ca1a733d96099bb2411027e24b0638a5270bbdbec8af41c1c4b6c4ee639772bba8319eb065908
+  languageName: node
+  linkType: hard
+
 "brace-expansion@npm:^1.1.7":
   version: 1.1.11
   resolution: "brace-expansion@npm:1.1.11"
@@ -4788,6 +4795,7 @@ __metadata:
     "@testing-library/react": ^11.2.3
     aave-js: ^1.2.1
     bootstrap: ^4.6.0
+    bootswatch: ^4.6.0
     fortmatic: ^2.2.1
     react: 16.11.0
     react-bootstrap: ^1.4.3
