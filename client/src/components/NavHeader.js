@@ -47,7 +47,7 @@ class NavHeader extends Component {
       );
     }
     return (
-      <Navbar bg="light">
+      <Navbar bg="dark" variant="dark">
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Blossym</Navbar.Brand>
