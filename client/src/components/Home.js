@@ -9,7 +9,7 @@ class Home extends Component {
       <div className="App">
         <Jumbotron>
           <h1>Welcome to Blossym!</h1>
-          <p> The ETH way to fund the creative economy. </p>
+          <p>The crypto way to fund the creative economy.</p>
           <div className="d-flex justify-content-around mt-5 col-md-12">
             <Link to="/fan">
               <Button variant="primary">For fans</Button>
