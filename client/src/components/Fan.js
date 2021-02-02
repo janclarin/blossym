@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, Card, Form, InputGroup } from "react-bootstrap";
 import Web3 from "web3";
+import SimpleStorageContract from "../contracts/SimpleStorage.json";
+import TransactionModal, { TransactionModalState } from "./TransactionModal";
 import "./Fan.css";
 
 class Fan extends Component {
@@ -9,13 +11,17 @@ class Fan extends Component {
     this.state = {
       creatorAddress: "",
       amountValue: 0,
+      sentTransactionHash: "",
+      transactionModalState: TransactionModalState.HIDDEN,
     };
 
+    this.getEthAmount = this.getEthAmount.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.resetTransactionModal = this.resetTransactionModal.bind(this);
+    this.sendDonation = this.sendDonation.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     if (!this.props.location) {
       return;
     }
@@ -23,6 +29,36 @@ class Fan extends Component {
     const queryParams = new URLSearchParams(this.props.location.search);
     const creatorAddress = queryParams.get("creatorAddress");
     this.setState({ creatorAddress: creatorAddress });
+  };
+
+  componentDidUpdate = async (prevProps) => {
+    if (this.props.provider !== prevProps.provider) {
+      await this.initContract();
+    }
+  };
+
+  async initContract() {
+    const { provider } = this.props;
+    if (!provider || this.state.contract) {
+      return;
+    }
+
+    try {
+      const web3 = new Web3(provider);
+      const networkId = await web3.eth.net.getId();
+      // TODO: Replace with fan donation contract.
+      const deployedNetwork = SimpleStorageContract.networks[networkId];
+      const instance = new web3.eth.Contract(
+        // TODO: Replace with fan donation contract abi.
+        SimpleStorageContract.abi,
+        deployedNetwork && deployedNetwork.address
+      );
+
+      this.setState({ contract: instance });
+    } catch (error) {
+      // Catch any errors for any of the above operations.
+      console.error(error);
+    }
   }
 
   handleInputChange(event) {
@@ -38,9 +74,44 @@ class Fan extends Component {
     }
   }
 
-  handleSubmit() {
-    // TODO: Create Web3 transaction.
-    console.log("Submitted");
+  resetTransactionModal() {
+    this.setState({
+      sentTransactionHash: "",
+      transactionModalState: TransactionModalState.HIDDEN,
+    });
+  }
+
+  getEthAmount() {
+    return Web3.utils.toWei(this.state.amountValue.toString(), "ether");
+  }
+
+  sendDonation(event) {
+    event.preventDefault();
+
+    try {
+      this.state.contract.methods
+        .set(5)
+        .send({ from: this.props.connectedWallet, amount: this.getEthAmount() })
+        .once("transactionHash", (hash) => {
+          console.log(hash);
+          this.setState({
+            sentTransactionHash: hash,
+            transactionModalState: TransactionModalState.AWAITING_CONFIRMATION,
+          });
+        })
+        .once("receipt", () => {
+          this.setState({
+            transactionModalState: TransactionModalState.CONFIRMED,
+          });
+        })
+        .on("error", () => {
+          this.setState({
+            transactionModalState: TransactionModalState.ERROR,
+          });
+        });
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
   }
 
   isValidAddress(address) {
@@ -92,7 +163,7 @@ class Fan extends Component {
           <Card.Body>
             <Card.Title>Support</Card.Title>
             <Card.Subtitle>Send crypto to your favorite creator.</Card.Subtitle>
-            <Form className="support-form" onSubmit={this.handleSubmit}>
+            <Form className="support-form" onSubmit={this.sendDonation}>
               <Form.Group controlId="creatorAddress">
                 <Form.Label srOnly>Creator's ETH wallet address</Form.Label>
                 <Form.Control
@@ -125,6 +196,11 @@ class Fan extends Component {
             </Form>
           </Card.Body>
         </Card>
+        <TransactionModal
+          modalState={this.state.transactionModalState}
+          transactionHash={this.state.sentTransactionHash}
+          onHide={this.resetTransactionModal}
+        />
       </div>
     );
   }
