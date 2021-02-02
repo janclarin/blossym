@@ -31,7 +31,7 @@ contract FanDonation {
     }
 
     // Signals to the front end whether or not the donation was successful
-    event DonationCompleteStatus(bool success);
+    event DonationCompleted(bool success);
 
     function donate(uint256 amount, address to) external {
         require(amount > 0, "Amount needs to be greater than 0");
@@ -45,6 +45,6 @@ contract FanDonation {
         // Actually deposit into the lendingPool on behalf of the creator
         lendingPool.deposit(address(usdc), amount, to, referralCode);
 
-        emit DonationCompleteStatus(true);
+        emit DonationCompleted(true);
     }
 }
