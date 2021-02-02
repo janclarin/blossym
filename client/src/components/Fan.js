@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Card, Form, InputGroup } from "react-bootstrap";
 import Web3 from "web3";
-import SimpleStorageContract from "../contracts/SimpleStorage.json";
+import FanProxyContract from "../contracts/FanProxy.json";
 import TransactionModal, { TransactionModalState } from "./TransactionModal";
 import "./Fan.css";
 
@@ -46,11 +46,9 @@ class Fan extends Component {
     try {
       const web3 = new Web3(provider);
       const networkId = await web3.eth.net.getId();
-      // TODO: Replace with fan donation contract.
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
+      const deployedNetwork = FanProxyContract.networks[networkId];
       const instance = new web3.eth.Contract(
-        // TODO: Replace with fan donation contract abi.
-        SimpleStorageContract.abi,
+        FanProxyContract.abi,
         deployedNetwork && deployedNetwork.address
       );
 
@@ -90,10 +88,9 @@ class Fan extends Component {
 
     try {
       this.state.contract.methods
-        .set(5)
-        .send({ from: this.props.connectedWallet, amount: this.getEthAmount() })
+        .swapAndDonateEth(this.state.creatorAddress)
+        .send({ from: this.props.connectedWallet, value: this.getEthAmount() })
         .once("transactionHash", (hash) => {
-          console.log(hash);
           this.setState({
             sentTransactionHash: hash,
             transactionModalState: TransactionModalState.AWAITING_CONFIRMATION,
