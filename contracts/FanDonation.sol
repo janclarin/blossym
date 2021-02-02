@@ -16,6 +16,11 @@ contract FanDonation {
     ILendingPoolAddressesProvider addressesProvider;
     ILendingPool lendingPool;
 
+    // USDC
+    IERC20 usdc = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
+    // Referral program for AAVE (https://docs.aave.com/developers/referral-program)
+    uint16 referralCode = 0;
+
     // Constructor takes the address of the AAVE protocol addresses provider. Should not change once deployed.
     // (https://docs.aave.com/developers/deployed-contracts)
     constructor(address _lendingPoolAddressesProvider) public {
@@ -25,15 +30,21 @@ contract FanDonation {
         lendingPool = ILendingPool(addressesProvider.getLendingPool());
     }
 
-    address asset = address(0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48); // USDC
-    uint16 referralCode = 0;
-
     // Signals to the front end whether or not the donation was successful
     event DonationCompleteStatus(bool success);
 
-    function donate(uint256 amount, address _onBehalfOf) external {
-        IERC20(asset).safeApprove(address(lendingPool), amount);
-        lendingPool.deposit(asset, amount, _onBehalfOf, referralCode);
+    function donate(uint256 amount, address to) external {
+        require(amount > 0, "Amount needs to be greater than 0");
+
+        // Transfer USDC to this contract
+        usdc.transferFrom(msg.sender, address(this), amount);
+
+        // Approve contract to deposit it into the lendingPool
+        usdc.safeApprove(address(lendingPool), amount);
+
+        // Actually deposit into the lendingPool on behalf of the creator
+        lendingPool.deposit(address(usdc), amount, to, referralCode);
+
         emit DonationCompleteStatus(true);
     }
 }
