@@ -2,13 +2,11 @@
 
 pragma solidity ^0.6.0;
 
-import {IERC20} from "../contracts/interfaces/IERC20.sol";
-import {SafeERC20} from "../contracts/interfaces/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
-import {ILendingPool} from "../contracts/interfaces/ILendingPool.sol";
-import {
-    ILendingPoolAddressesProvider
-} from "../contracts/interfaces/ILendingPoolAddressesProvider.sol";
+import "@aave/protocol-v2/contracts/interfaces/ILendingPool.sol";
+import "@aave/protocol-v2/contracts/interfaces/ILendingPoolAddressesProvider.sol";
 
 contract FanDonation {
     using SafeERC20 for IERC20;

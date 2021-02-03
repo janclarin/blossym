@@ -8,6 +8,11 @@ module.exports = {
   // to customize your Truffle configuration!
   contracts_build_directory: path.join(__dirname, "client/src/contracts"),
   networks: {
+    development: {
+      network_id: "*",
+      host: "localhost",
+      port: 8545,
+    },
     kovan: {
       provider: () =>
         new HDWalletProvider({

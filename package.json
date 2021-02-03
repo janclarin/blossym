@@ -25,6 +25,7 @@
     "test": "yarn workspace client run test"
   },
   "dependencies": {
+    "@aave/protocol-v2": "^1.0.1",
     "@openzeppelin/contracts": "^3.3.0",
     "@truffle/hdwallet-provider": "^1.2.1"
   },
