@@ -1,22 +1,29 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./FanSwap.sol";
 
 contract FanProxy {
+    // USDC address compatible with Aave for aUSDC.
+    address private constant USDC_KOVAN_ADDRESS =
+        0xe22da380ee6b445bb8273c81944adeb6e8450422;
+
+    IERC20 private usdc = IERC20(USDC_KOVAN_ADDRESS);
+
+    FanSwap private immutable fanSwap;
+
+    constructor(address fanSwapAddress) public {
+        fanSwap = FanSwap(fanSwapAddress);
+    }
+
     function swapAndDonateEth(address to) external payable {
         require(msg.value > 0, "Cannot swap and donate 0 ETH");
 
-        // TODO: Remove this. Just for testing purposes.
-        (bool success, ) = to.call{value: msg.value}("");
-        require(success, "Transfer failed");
+        fanSwap.swapToUSDC{value: msg.value}();
 
-        // TODO: Swap ETH to USDC via FanSwap contract.
-
-        // Should be the amount of USDC this contract has after FanSwap.swap().
-        // Replace with IERC20(usdcAddress).balanceOf(address(this)).
-        uint256 usdcAmount = 100;
-        _donate(usdcAmount, to);
+        uint256 swappedUsdcAmount = usdc.balanceOf(address(this));
+        _donate(swappedUsdcAmount, to);
     }
 
     function _donate(uint256 usdcAmount, address to) private {
