@@ -2832,6 +2832,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@uniswap/lib@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@uniswap/lib@npm:1.1.1"
+  checksum: ee80fdc930b63339b2d6fb6ea58b74a913942f238294b66c815666c93ebaba536fb9628147325892957fa479104149fc8e935faa0d62d9dcb7193c54e5cd34cf
+  languageName: node
+  linkType: hard
+
+"@uniswap/v2-core@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@uniswap/v2-core@npm:1.0.0"
+  checksum: 616c8a32ccf25db1b8d5708c2fc7f66795a4ff226d3a2268a97573534aab73e4f59f8f07cc5ae820852a7dfb8e9f23b856b8f443afdee65cd09f931ec9b58cda
+  languageName: node
+  linkType: hard
+
+"@uniswap/v2-core@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@uniswap/v2-core@npm:1.0.1"
+  checksum: e3dcbe72500530249b68d2f2c92062f3f21919267123262578a34cac2862edf7eeda8fcdc808a370d109f26e357635b1cf546e35dbd902a18768ac88d9a8fb0f
+  languageName: node
+  linkType: hard
+
+"@uniswap/v2-periphery@npm:^1.1.0-beta.0":
+  version: 1.1.0-beta.0
+  resolution: "@uniswap/v2-periphery@npm:1.1.0-beta.0"
+  dependencies:
+    "@uniswap/lib": 1.1.1
+    "@uniswap/v2-core": 1.0.0
+  checksum: fcfe52df7cf410738cde25684585cc454cd879f245b671b2686e65a3ffd7c109cbb0bbb89f82a04fe1d08711481f9c91a350ab8bc92b645dd99f1d58a1a18d8b
+  languageName: node
+  linkType: hard
+
 "@webassemblyjs/ast@npm:1.8.5":
   version: 1.8.5
   resolution: "@webassemblyjs/ast@npm:1.8.5"
@@ -3035,6 +3066,8 @@ __metadata:
     "@aave/protocol-v2": ^1.0.1
     "@openzeppelin/contracts": ^3.3.0
     "@truffle/hdwallet-provider": ^1.2.1
+    "@uniswap/v2-core": ^1.0.1
+    "@uniswap/v2-periphery": ^1.1.0-beta.0
     husky: ^4.3.8
     lint-staged: ^10.5.3
     prettier: 2.2.1
