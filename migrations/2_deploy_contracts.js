@@ -11,4 +11,4 @@ module.exports = function (deployer) {
   deployer.deploy(SimpleStorage);
   deployer.deploy(FanProxy);
   deployer.deploy(FanDonation, LendingPoolAddressesProvider);
-}
+};
