@@ -17,7 +17,7 @@ contract FanProxy {
         fanSwap = FanSwap(fanSwapAddress);
     }
 
-    function swapAndDonateEth(address to) external payable {
+    function swapAndDonateETH(address to) external payable {
         require(msg.value > 0, "Cannot swap and donate 0 ETH");
 
         fanSwap.swapToUSDC{value: msg.value}();
