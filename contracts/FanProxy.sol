@@ -7,7 +7,7 @@ import "./FanSwap.sol";
 contract FanProxy {
     // USDC address compatible with Aave for aUSDC.
     address private constant USDC_KOVAN_ADDRESS =
-        0xe22da380ee6b445bb8273c81944adeb6e8450422;
+        0xe22da380ee6B445bb8273C81944ADEB6E8450422;
 
     IERC20 private usdc = IERC20(USDC_KOVAN_ADDRESS);
 
