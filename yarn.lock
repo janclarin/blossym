@@ -2096,10 +2096,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/contracts@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@openzeppelin/contracts@npm:3.3.0"
-  checksum: 61fc437b314c9b8c2dcb60151db0c872cfcbfa81a0a019f8d0bfff2e8338020bf27edc378056a231b596793702e26ce40d96634ff9e98af5783abec89b13dda8
+"@openzeppelin/contracts@npm:^3.3.0":
+  version: 3.4.0
+  resolution: "@openzeppelin/contracts@npm:3.4.0"
+  checksum: 62774f79ac6479001f8755116693dbaad68c26d65c2efd4725cfbdac287d628d1c9dcc12c19477a092e33722c89a5c3c8e600a1656303a0e02cdff3643744b70
   languageName: node
   linkType: hard
 
@@ -3033,7 +3033,7 @@ __metadata:
   resolution: "Blossym@workspace:."
   dependencies:
     "@aave/protocol-v2": ^1.0.1
-    "@openzeppelin/contracts": 3.3.0
+    "@openzeppelin/contracts": ^3.3.0
     "@truffle/hdwallet-provider": ^1.2.1
     husky: ^4.3.8
     lint-staged: ^10.5.3
