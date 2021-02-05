@@ -58,6 +58,7 @@ class TransactionModal extends Component {
         variant={buttonVariant}
         size="lg"
         href={this.getEtherscanUrl(this.props.transactionHash)}
+        target="_blank"
       >
         View on Etherscan
       </Button>
