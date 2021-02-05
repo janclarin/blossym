@@ -18,13 +18,13 @@ class Creator extends Component {
   }
 
   async getBalance() {
-    let tokenAddress = "0xbcca60bb61934080951369a648fb03df4f96263c";
-    let walletAddress = this.props.connectedWallet;
+    const tokenAddress = "0xbcca60bb61934080951369a648fb03df4f96263c";
+    const walletAddress = this.props.connectedWallet;
     if (this.props.provider) {
-      let web3 = new Web3(this.props.provider);
+      const web3 = new Web3(this.props.provider);
 
       // The minimum ABI to get ERC20 Token balance
-      let minABI = [
+      const minABI = [
         // balanceOf
         {
           constant: true,
@@ -164,7 +164,11 @@ class Creator extends Component {
                 {this.props.ethTransactions.map((tx) => (
                   <tr>
                     <td>
-                      <a href={this.getLink(tx.hash)} target="_blank">
+                      <a
+                        href={this.getLink(tx.hash)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {tx.from}
                       </a>
                     </td>
