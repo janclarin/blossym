@@ -32,6 +32,7 @@ class Creator extends Component {
     fetch(fetchURL)
       .then((response) => response.json())
       .then((balance) => {
+        // This gives the correct number of decimal places for the exact dollar value
         balance = (balance.result * Math.pow(10, -6)).toFixed(2);
         this.setState({ aUSDCBalance: balance });
       });
