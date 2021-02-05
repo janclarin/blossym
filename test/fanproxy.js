@@ -8,7 +8,7 @@ contract("FanProxy", (accounts) => {
     const creatorAddress = accounts[1];
     const ethDonationAmount = web3.utils.toWei("5");
 
-    await fanProxyInstance.swapAndDonateEth(creatorAddress, {
+    await fanProxyInstance.swapAndDonateETH(creatorAddress, {
       from: fanAddress,
       value: ethDonationAmount,
     });

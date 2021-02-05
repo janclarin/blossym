@@ -88,7 +88,7 @@ class Fan extends Component {
 
     try {
       this.state.contract.methods
-        .swapAndDonateEth(this.state.creatorAddress)
+        .swapAndDonateETH(this.state.creatorAddress)
         .send({ from: this.props.connectedWallet, value: this.getEthAmount() })
         .once("transactionHash", (hash) => {
           this.setState({
