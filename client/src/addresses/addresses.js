@@ -8,6 +8,8 @@ export const ROPSTEN_ID = 3;
 
 export default {
   [KOVAN_ID]: {
+    // Blossym FanProxy contract.
+    fanProxy: "0xA67d64deeF4E93bb3a13292fD66493C5Fa9C4C68",
     lendingPoolAddressesProvider: "0x506B0B2CF20FAA8f38a4E2B524EE43e1f4458Cc5",
     lendingPool: "0x580D4Fdc4BF8f9b5ae2fb9225D584fED4AD5375c",
     lendingPoolCore: "0x95D1189Ed88B380E319dF73fF00E479fcc4CFa45",
