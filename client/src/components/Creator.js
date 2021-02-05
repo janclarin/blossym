@@ -18,8 +18,25 @@ class Creator extends Component {
   }
 
   async getBalance() {
-    const tokenAddress = "0xbcca60bb61934080951369a648fb03df4f96263c";
+    const tokenAddress = "0xe12afec5aa12cf614678f9bfeeb98ca9bb95b5b0";
     const walletAddress = this.props.connectedWallet;
+    const fetchURL =
+      "https://api-kovan.etherscan.io/api?module=account&action=tokenbalance" +
+      "&contractaddress=" +
+      tokenAddress +
+      "&address=" +
+      walletAddress +
+      "&tag=latest&apikey=" +
+      process.env.ETHERSCAN_KEY;
+
+    fetch(fetchURL)
+      .then((response) => response.json())
+      .then((balance) => {
+        // This gives the correct number of decimal places for the exact dollar value
+        balance = (balance.result * Math.pow(10, -6)).toFixed(2);
+        this.setState({ aUSDCBalance: balance });
+      });
+    /*
     if (this.props.provider) {
       const web3 = new Web3(this.props.provider);
 
@@ -48,7 +65,9 @@ class Creator extends Component {
       // Call balanceOf function
       const balance = await contract.methods.balanceOf(walletAddress).call();
       this.setState({ aUSDCBalance: balance });
+    
     }
+    */
   }
 
   componentDidMount() {
@@ -87,13 +106,10 @@ class Creator extends Component {
       page = (
         <div>
           <div class="d-flex justify-content-center mt-5 col-md-12">
-            <Button
-              variant="primary"
-              onClick={this.props.onWalletConnectClick}
-              data-testid="connect-wallet-button"
-            >
-              Connect Wallet
-            </Button>
+            <h3>
+              {" "}
+              You need to connect your wallet before viewing your balance.{" "}
+            </h3>
           </div>
         </div>
       );
