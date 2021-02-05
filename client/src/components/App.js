@@ -53,6 +53,17 @@ class App extends Component {
       this.setState({
         connectedWallet: accounts[0],
       });
+      const fetchURL =
+        "https://api.etherscan.io/api?module=account&action=txlist&address=" +
+        this.state.connectedWallet +
+        "&startblock=0&endblock=99999999&sort=desc&apikey=" +
+        process.env.ETHERSCAN_KEY;
+      fetch(fetchURL)
+        .then((response) => response.json())
+        .then((ethTx) => {
+          ethTx = ethTx.result.slice(0, 5);
+          this.setState({ ethTransactions: ethTx });
+        });
     }
   }
 
@@ -87,7 +98,17 @@ class App extends Component {
                 />
               )}
             />
-            <Route path="/creator" component={Creator} />
+            <Route
+              path="/creator"
+              render={(routeProps) => (
+                <Creator
+                  {...routeProps}
+                  connectedWallet={this.state.connectedWallet}
+                  ethTransactions={this.state.ethTransactions}
+                  onWalletConnectClick={this.openWalletConnectModal}
+                />
+              )}
+            />
           </Switch>
         </Container>
       </BrowserRouter>
