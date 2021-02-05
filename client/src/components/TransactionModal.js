@@ -16,8 +16,8 @@ class TransactionModal extends Component {
   };
 
   getEtherscanUrl = (transactionHash) => {
-    // TODO: Support test network chains.
-    return `https://etherscan.io/tx/${transactionHash}`;
+    // TODO: Support non-kovan network chains.
+    return `https://kovan.etherscan.io/tx/${transactionHash}`;
   };
 
   render() {
