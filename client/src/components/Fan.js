@@ -3,6 +3,7 @@ import { Button, Card, Form, InputGroup } from "react-bootstrap";
 import Web3 from "web3";
 import FanProxyContract from "../contracts/FanProxy.json";
 import TransactionModal, { TransactionModalState } from "./TransactionModal";
+import { addresses } from "../addresses";
 import "./Fan.css";
 
 class Fan extends Component {
@@ -46,10 +47,12 @@ class Fan extends Component {
     try {
       const web3 = new Web3(provider);
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = FanProxyContract.networks[networkId];
+      const fanProxyAddress = addresses[networkId]
+        ? addresses[networkId].fanProxy
+        : FanProxyContract.networks[networkId].address;
       const instance = new web3.eth.Contract(
         FanProxyContract.abi,
-        deployedNetwork && deployedNetwork.address
+        fanProxyAddress
       );
 
       this.setState({ contract: instance });
