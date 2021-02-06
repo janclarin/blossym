@@ -36,7 +36,7 @@ class Home extends Component {
           <p className="lead">The crypto way to fund the creative economy.</p>
           <div className="mt-4">
             <Link className="mr-4" to="/fan">
-              <Button variant="primary" size="lg">
+              <Button variant="info" size="lg">
                 Fans
               </Button>
             </Link>
