@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class Home extends Component {
   getCreatorCard(name, description, address, websiteUrl) {
-    const fanLink = "/fan?creatorAddress=" + address;
+    const fanLink = "/fan/" + address;
     return (
       <Card>
         <Card.Body>

@@ -23,13 +23,10 @@ class Fan extends Component {
   }
 
   componentDidMount = async () => {
-    if (!this.props.location) {
-      return;
+    const creatorAddressFromUrl = this.props.match.params.creatorAddress;
+    if (creatorAddressFromUrl) {
+      this.setState({ creatorAddress: creatorAddressFromUrl });
     }
-    // Populates creator address input field with value from URL query param.
-    const queryParams = new URLSearchParams(this.props.location.search);
-    const creatorAddress = queryParams.get("creatorAddress");
-    this.setState({ creatorAddress: creatorAddress });
   };
 
   componentDidUpdate = async (prevProps) => {

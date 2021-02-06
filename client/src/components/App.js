@@ -86,7 +86,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
-            path="/fan"
+            path={["/fan/:creatorAddress", "/fan"]}
             render={(routeProps) => (
               <Fan
                 {...routeProps}
