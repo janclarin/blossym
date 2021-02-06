@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import NavHeader from "./NavHeader";
-import Creator from "./Creator";
-import Home from "./Home";
-import Fan from "./Fan";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 import Fortmatic from "fortmatic";
+import NavHeader from "./NavHeader";
+import Home from "./Home";
+import Creator from "./Creator";
+import Fan from "./Fan";
 
 const initialState = {
   web3: null,
@@ -84,33 +83,31 @@ class App extends Component {
           onWalletConnectClick={() => this.openWalletConnectModal()}
           onDisconnectWallet={() => this.disconnectWallet()}
         />
-        <Container>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              path="/fan"
-              render={(routeProps) => (
-                <Fan
-                  {...routeProps}
-                  provider={this.state.provider}
-                  connectedWallet={this.state.connectedWallet}
-                  onWalletConnectClick={this.openWalletConnectModal}
-                />
-              )}
-            />
-            <Route
-              path="/creator"
-              render={(routeProps) => (
-                <Creator
-                  {...routeProps}
-                  connectedWallet={this.state.connectedWallet}
-                  ethTransactions={this.state.ethTransactions}
-                  onWalletConnectClick={this.openWalletConnectModal}
-                />
-              )}
-            />
-          </Switch>
-        </Container>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route
+            path="/fan"
+            render={(routeProps) => (
+              <Fan
+                {...routeProps}
+                provider={this.state.provider}
+                connectedWallet={this.state.connectedWallet}
+                onWalletConnectClick={this.openWalletConnectModal}
+              />
+            )}
+          />
+          <Route
+            path="/creator"
+            render={(routeProps) => (
+              <Creator
+                {...routeProps}
+                connectedWallet={this.state.connectedWallet}
+                ethTransactions={this.state.ethTransactions}
+                onWalletConnectClick={this.openWalletConnectModal}
+              />
+            )}
+          />
+        </Switch>
       </BrowserRouter>
     );
   }
