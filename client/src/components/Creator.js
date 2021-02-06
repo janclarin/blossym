@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Button, Card, Table } from "react-bootstrap";
+import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
 import { ImCopy, ImTwitter, ImTelegram } from "react-icons/im";
 import { TwitterShareButton, TelegramShareButton } from "react-share";
 import Web3 from "web3";
@@ -115,7 +115,7 @@ class Creator extends Component {
       );
     } else {
       page = (
-        <div>
+        <Container>
           <div class="d-flex justify-content-center mt-5 col-md-12">
             <Button variant="outline-success">Cash Out</Button>
           </div>
@@ -195,7 +195,7 @@ class Creator extends Component {
               </tbody>
             </Table>
           </div>
-        </div>
+        </Container>
       );
     }
 
