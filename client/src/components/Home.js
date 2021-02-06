@@ -11,10 +11,12 @@ class Home extends Component {
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
           <Link to={fanLink}>
-            <Button variant="info">Support</Button>
+            <Button className="mr-2 mt-1" variant="info">
+              Support
+            </Button>
           </Link>
           <Button
-            className="ml-2"
+            className="mt-1"
             variant="secondary"
             href={websiteUrl}
             target="_blank"
