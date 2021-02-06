@@ -40,7 +40,7 @@ class NavHeader extends Component {
 
           <Dropdown.Menu>
             <Dropdown.Item onClick={this.props.onDisconnectWallet}>
-              Disconect
+              Disconnect
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
