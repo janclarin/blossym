@@ -103,6 +103,7 @@ class App extends Component {
                 {...routeProps}
                 connectedWallet={this.state.connectedWallet}
                 ethTransactions={this.state.ethTransactions}
+                provider={this.state.provider}
                 onWalletConnectClick={this.openWalletConnectModal}
               />
             )}
