@@ -4,6 +4,7 @@ import { ImCopy, ImTwitter, ImTelegram } from "react-icons/im";
 import { TwitterShareButton, TelegramShareButton } from "react-share";
 import Web3 from "web3";
 
+
 class Creator extends Component {
   constructor(props) {
     super(props);
@@ -116,10 +117,10 @@ class Creator extends Component {
       page = (
         <Container>
           <div class="d-flex justify-content-center mt-5 col-md-12">
-            <Button variant="outline-success">Cash Out</Button>
+            <Button variant="success" size = "lg">Cash Out</Button>
           </div>
 
-          <div class="d-flex justify-content-around mt-5 col-md-12">
+          <div class="d-flex justify-content-sm-around mt-5">
             <Card style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Your balance</Card.Title>
@@ -167,7 +168,7 @@ class Creator extends Component {
             <h3> Recent Transactions </h3>
           </div>
           <div class="d-flex justify-content-around mt-5 col-md-12">
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>From</th>
