@@ -50,7 +50,7 @@ class TransactionModal extends Component {
 
     const modalBody =
       this.props.modalState === TransactionModalState.CONFIRMED
-        ? "Thank you for supporting the creators you love!"
+        ? this.props.confirmedText
         : spinner;
 
     const etherscanButton = this.props.transactionHash ? (

@@ -194,6 +194,7 @@ class Fan extends Component {
           </Card.Body>
         </Card>
         <TransactionModal
+          confirmedText="Thank you for supporting the creators you love!"
           modalState={this.state.transactionModalState}
           transactionHash={this.state.sentTransactionHash}
           onHide={this.resetTransactionModal}
