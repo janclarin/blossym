@@ -23,8 +23,6 @@ class Creator extends Component {
       sentTransactionHash: "",
       aaveRate: "0",
       estimatedFuture: "0",
-      copied: false,
-      ethTransactions: [],
     };
     this.changeEstValue = this.changeEstValue.bind(this);
   }
@@ -34,6 +32,7 @@ class Creator extends Component {
   }
 
   cashOut() {
+    // WIP: This only Mocks the real behavior.
     if (this.state.aUSDCBalance === "0") {
       alert("You don't have any funds to cash out");
     } else {
@@ -49,13 +48,12 @@ class Creator extends Component {
     const rate = 0.01 * parseFloat(this.state.aaveRate);
     const timeYears = parseInt(time) / 12;
 
-    const A = principle * (1 + rate * timeYears);
-    return A;
+    const estimatedBalance = principle * (1 + rate * timeYears);
+    return estimatedBalance;
   }
   changeEstValue(e) {
-    const A = this.calculateInterest(e.target.value);
-
-    this.setState({ estimatedFuture: A.toFixed(2) });
+    const estimatedBalance = this.calculateInterest(e.target.value);
+    this.setState({ estimatedFuture: estimatedBalance.toFixed(2) });
   }
 
   async getBalance() {
@@ -80,7 +78,6 @@ class Creator extends Component {
     const fetchURLAaveRates = "https://api.aleth.io/v0/defi/snapshot";
     const aaveResponse = await fetch(fetchURLAaveRates);
     const aaveResponseJson = await aaveResponse.json();
-    console.log(aaveResponseJson);
     const aaveRate = aaveResponseJson.data[95].value;
     this.setState({ aaveRate: aaveRate });
 
@@ -96,9 +93,6 @@ class Creator extends Component {
     const ethRatesJson = await fetchEthRates.json();
     const priceInUSD = ethRatesJson[0].current_price;
     this.setState({ ETHinUSD: priceInUSD });
-    if (this.props.ethTransactions) {
-      this.setState({ ethTransactions: this.props.ethTransactions });
-    }
   }
 
   getValue(weiVal) {
@@ -141,7 +135,7 @@ class Creator extends Component {
             </Button>
           </div>
 
-          <div className="d-flex justify-content-sm-center mt-5">
+          <div class="d-flex justify-content-center mt-4">
             <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Your balance</Card.Title>
@@ -155,10 +149,7 @@ class Creator extends Component {
                 <Card.Title>Share your fan link!</Card.Title>
                 <Row>
                   <Col sm>
-                    <CopyToClipboard
-                      text={fanLink}
-                      onCopy={() => this.setState({ copied: true })}
-                    >
+                    <CopyToClipboard text={fanLink}>
                       <Button variant="outline-primary">
                         <ImCopy />
                       </Button>
@@ -192,7 +183,7 @@ class Creator extends Component {
               </Card.Body>
             </Card>
           </div>
-          <div class="d-flex justify-content-center mt-5">
+          <div class="d-flex justify-content-center mt-4">
             <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Interest rate</Card.Title>
