@@ -98,8 +98,7 @@ class Creator extends Component {
 
   render() {
     const balance = this.state.aUSDCBalance + " aUSDC";
-    const fanLink =
-      "https://blossym.org/fan?creatorAddress=" + this.props.connectedWallet;
+    const fanLink = "https://blossym.org/fan/" + this.props.connectedWallet;
 
     let page;
     if (!this.props.connectedWallet) {
