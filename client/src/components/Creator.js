@@ -51,8 +51,9 @@ class Creator extends Component {
     const estimatedBalance = principle * (1 + rate * timeYears);
     return estimatedBalance;
   }
-  changeEstValue(e) {
-    const estimatedBalance = this.calculateInterest(e.target.value);
+
+  changeEstValue(numMonths) {
+    const estimatedBalance = this.calculateInterest(numMonths);
     this.setState({ estimatedFuture: estimatedBalance.toFixed(2) });
   }
 
@@ -135,7 +136,7 @@ class Creator extends Component {
             </Button>
           </div>
 
-          <div class="d-flex justify-content-center mt-4">
+          <div className="d-flex justify-content-center mt-4">
             <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Your balance</Card.Title>
@@ -183,7 +184,7 @@ class Creator extends Component {
               </Card.Body>
             </Card>
           </div>
-          <div class="d-flex justify-content-center mt-4">
+          <div className="d-flex justify-content-center mt-4">
             <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Interest rate</Card.Title>
@@ -204,8 +205,8 @@ class Creator extends Component {
                   size="sm"
                   type="radio"
                   name="options"
-                  defaultValue={1}
-                  onClick={this.changeEstValue}
+                  defaultValue="1"
+                  onChange={this.changeEstValue}
                 >
                   <ToggleButton value="1">1mo</ToggleButton>
                   <ToggleButton value="6">6mo</ToggleButton>
@@ -214,7 +215,7 @@ class Creator extends Component {
               </Card.Body>
             </Card>
           </div>
-          <div class="d-flex justify-content-around mt-5 col-md-12">
+          <div className="d-flex justify-content-around mt-5 col-md-12">
             <h3> Recent Transactions </h3>
           </div>
           <div className="d-flex justify-content-around mt-5 col-md-12">
