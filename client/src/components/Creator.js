@@ -120,8 +120,8 @@ class Creator extends Component {
             <Button variant="success" size = "lg">Cash Out</Button>
           </div>
 
-          <div class="d-flex justify-content-sm-around mt-5">
-            <Card style={{ width: "17rem" }}>
+          <div class="d-flex justify-content-sm-center mt-5">
+            <Card className = "mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Your balance</Card.Title>
                 <Card.Text>{balance}</Card.Text>
