@@ -11,10 +11,12 @@ class Home extends Component {
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
           <Link to={fanLink}>
-            <Button variant="info">Support</Button>
+            <Button className="mr-2 mt-1" variant="info">
+              Support
+            </Button>
           </Link>
           <Button
-            className="ml-2"
+            className="mt-1"
             variant="secondary"
             href={websiteUrl}
             target="_blank"
@@ -32,24 +34,30 @@ class Home extends Component {
         <Jumbotron className="text-center">
           <h1 className="display-4">Welcome to Blossym!</h1>
           <p className="lead">The crypto way to fund the creative economy.</p>
-          <div className="mt-4">
-            <Link className="mr-4" to="/fan">
-              <Button variant="primary" size="lg">
-                Fans
-              </Button>
-            </Link>
-            <Link className="ml-4" to="/creator">
-              <Button variant="success" size="lg">
-                Creators
-              </Button>
-            </Link>
+          <div className="mt-4 d-flex justify-content-center">
+            <div className="d-flex flex-column align-items-center mr-4">
+              <h2 class="h5">Fans</h2>
+              <Link to="/fan">
+                <Button variant="info" size="lg">
+                  Support creators
+                </Button>
+              </Link>
+            </div>
+            <div className="d-flex flex-column align-items-center">
+              <h2 class="h5">Creators</h2>
+              <Link to="/creator">
+                <Button variant="success" size="lg">
+                  Open dashboard
+                </Button>
+              </Link>
+            </div>
           </div>
         </Jumbotron>
         <Container className="mt-5">
           <CardDeck className="mt-4">
             {this.getCreatorCard(
               "DeFi Dad",
-              "DeFi content creator",
+              "Content creator",
               "0x2f71129b240080C638ac8d993BFF52169E3551c3",
               "https://twitter.com/DeFi_Dad"
             )}
@@ -61,7 +69,7 @@ class Home extends Component {
             )}
             {this.getCreatorCard(
               "Vitalik Buterin",
-              "Co-founder of Ethereum",
+              "Ethereum co-founder",
               "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
               "https://vitalik.ca"
             )}
