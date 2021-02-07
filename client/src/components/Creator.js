@@ -116,11 +116,13 @@ class Creator extends Component {
       page = (
         <Container>
           <div class="d-flex justify-content-center mt-5 col-md-12">
-            <Button variant="outline-success">Cash Out</Button>
+            <Button variant="success" size="lg">
+              Cash Out
+            </Button>
           </div>
 
-          <div class="d-flex justify-content-around mt-5 col-md-12">
-            <Card style={{ width: "17rem" }}>
+          <div class="d-flex justify-content-sm-center mt-5">
+            <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Your balance</Card.Title>
                 <Card.Text>{balance}</Card.Text>
@@ -167,7 +169,7 @@ class Creator extends Component {
             <h3> Recent Transactions </h3>
           </div>
           <div class="d-flex justify-content-around mt-5 col-md-12">
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>From</th>
