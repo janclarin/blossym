@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {
   Button,
-  ButtonGroup,
+  ToggleButton,
+  ToggleButtonGroup,
   Card,
   Col,
   Container,
@@ -25,6 +26,7 @@ class Creator extends Component {
       copied: false,
       ethTransactions: [],
     };
+    this.changeEstValue = this.changeEstValue.bind(this);
   }
 
   getLink(hash) {
@@ -44,11 +46,16 @@ class Creator extends Component {
 
   calculateInterest(time) {
     const principle = parseFloat(this.state.aUSDCBalance);
-    const rate = parseFloat(this.state.aaveRate);
+    const rate = 0.01 * parseFloat(this.state.aaveRate);
     const timeYears = parseInt(time) / 12;
 
     const A = principle * (1 + rate * timeYears);
     return A;
+  }
+  changeEstValue(e) {
+    const A = this.calculateInterest(e.target.value);
+
+    this.setState({ estimatedFuture: A.toFixed(2) });
   }
 
   async getBalance() {
@@ -96,7 +103,6 @@ class Creator extends Component {
 
   getValue(weiVal) {
     const val = Web3.utils.fromWei(weiVal, "ether");
-
     var USD = parseFloat(val) * parseFloat(this.state.ETHinUSD);
     USD = USD.toFixed(2);
     return val + " ETH ($" + USD + " USD)";
@@ -148,9 +154,11 @@ class Creator extends Component {
               <Card.Body>
                 <Card.Title>Share your fan link!</Card.Title>
                 <Row>
-                    <Col sm>
-                    <CopyToClipboard text={fanLink}
-                      onCopy={() => this.setState({copied: true})}>
+                  <Col sm>
+                    <CopyToClipboard
+                      text={fanLink}
+                      onCopy={() => this.setState({ copied: true })}
+                    >
                       <Button variant="outline-primary">
                         <ImCopy />
                       </Button>
@@ -201,11 +209,17 @@ class Creator extends Component {
                     {this.state.estimatedFuture + " aUSDC"}
                   </p>
                 </Card.Subtitle>
-                <ButtonGroup size="sm" onClick={this.changeEstValue}>
-                  <Button value="1">1mo</Button>
-                  <Button value="6">6mo</Button>
-                  <Button value="12">1yr</Button>
-                </ButtonGroup>
+                <ToggleButtonGroup
+                  size="sm"
+                  type="radio"
+                  name="options"
+                  defaultValue={1}
+                  onClick={this.changeEstValue}
+                >
+                  <ToggleButton value="1">1mo</ToggleButton>
+                  <ToggleButton value="6">6mo</ToggleButton>
+                  <ToggleButton value="12">1yr</ToggleButton>
+                </ToggleButtonGroup>
               </Card.Body>
             </Card>
           </div>
