@@ -35,6 +35,7 @@ class App extends Component {
       providerOptions, // required
     });
     this.openWalletConnectModal = this.openWalletConnectModal.bind(this);
+    this.disconnectWallet = this.disconnectWallet.bind(this);
   }
 
   async openWalletConnectModal() {
