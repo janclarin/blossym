@@ -52,8 +52,8 @@ class Creator extends Component {
     return estimatedBalance;
   }
 
-  changeEstValue(value) {
-    const estimatedBalance = this.calculateInterest(value);
+  changeEstValue(numMonths) {
+    const estimatedBalance = this.calculateInterest(numMonths);
     this.setState({ estimatedFuture: estimatedBalance.toFixed(2) });
   }
 
