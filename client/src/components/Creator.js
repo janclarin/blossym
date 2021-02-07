@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Button, Card, Col, Container, Row, Table } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  Col,
+  Container,
+  Row,
+  Table,
+} from "react-bootstrap";
 import { ImCopy, ImTwitter, ImTelegram } from "react-icons/im";
 import { TwitterShareButton, TelegramShareButton } from "react-share";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -24,13 +32,13 @@ class Creator extends Component {
   }
 
   cashOut() {
-    if (this.state.aUSDCBalance === "0")
-    {
-      alert("You don't have any funds to cash out"); 
-    }
-    else {
-      alert("You've successfully withdrawn your aUSDC and will show up as USDC in your wallet.");
-      this.setState({aUSDCBalance: "0", estimatedFuture: "0"});
+    if (this.state.aUSDCBalance === "0") {
+      alert("You don't have any funds to cash out");
+    } else {
+      alert(
+        "You've successfully withdrawn your aUSDC and will show up as USDC in your wallet."
+      );
+      this.setState({ aUSDCBalance: "0", estimatedFuture: "0" });
     }
   }
 
@@ -46,7 +54,7 @@ class Creator extends Component {
   async getBalance() {
     const tokenAddress = "0xe12afec5aa12cf614678f9bfeeb98ca9bb95b5b0";
     const walletAddress = this.props.connectedWallet;
-    const fetchURL =
+    const fetchURLEtherscan =
       "https://api-kovan.etherscan.io/api?module=account&action=tokenbalance" +
       "&contractaddress=" +
       tokenAddress +
@@ -56,30 +64,30 @@ class Creator extends Component {
       process.env.ETHERSCAN_KEY;
 
     const fetchEtherscan = await fetch(fetchURLEtherscan);
-    const etherscanResponseJson = await fetchEtherscan.json(); 
-    const balance = (etherscanResponseJson.result * Math.pow(10, -6)).toFixed(2);
+    const etherscanResponseJson = await fetchEtherscan.json();
+    const balance = (etherscanResponseJson.result * Math.pow(10, -6)).toFixed(
+      2
+    );
     this.setState({ aUSDCBalance: balance });
-
 
     const fetchURLAaveRates = "https://api.aleth.io/v0/defi/snapshot";
     const aaveResponse = await fetch(fetchURLAaveRates);
-    const aaveResponseJson = await aaveResponse.json(); 
+    const aaveResponseJson = await aaveResponse.json();
     console.log(aaveResponseJson);
-    const aaveRate = aaveResponseJson.data[95].value; 
-    this.setState({aaveRate: aaveRate}); 
-    
+    const aaveRate = aaveResponseJson.data[95].value;
+    this.setState({ aaveRate: aaveRate });
 
     const futureRate = this.calculateInterest(1);
     this.setState({ estimatedFuture: futureRate.toFixed(2) });
-
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.getBalance();
-    const fetchURLGecko = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum";
-    const fetchEthRates = await fetch(fetchURLGecko); 
-    const ethRatesJson = await fetchEthRates.json(); 
-    const priceInUSD = ethRatesJson[0].current_price; 
+    const fetchURLGecko =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum";
+    const fetchEthRates = await fetch(fetchURLGecko);
+    const ethRatesJson = await fetchEthRates.json();
+    const priceInUSD = ethRatesJson[0].current_price;
     this.setState({ ETHinUSD: priceInUSD });
     if (this.props.ethTransactions) {
       this.setState({ ethTransactions: this.props.ethTransactions });
@@ -104,6 +112,7 @@ class Creator extends Component {
   render() {
     const balance = this.state.aUSDCBalance + " aUSDC";
     const fanLink = "https://blossym.org/fan/" + this.props.connectedWallet;
+    const rate = this.state.aaveRate + "%";
 
     let page;
     if (!this.props.connectedWallet) {
@@ -185,7 +194,9 @@ class Creator extends Component {
               <Card.Body>
                 <Card.Title>Est. future earnings</Card.Title>
                 <Card.Subtitle className="mt-2">
-                  <p className="lead">{this.state.estimatedFuture + " aUSDC"}</p>
+                  <p className="lead">
+                    {this.state.estimatedFuture + " aUSDC"}
+                  </p>
                 </Card.Subtitle>
                 <ButtonGroup size="sm" onClick={this.changeEstValue}>
                   <Button value="1">1mo</Button>
