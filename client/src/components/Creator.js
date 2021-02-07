@@ -148,10 +148,13 @@ class Creator extends Component {
               <Card.Body>
                 <Card.Title>Share your fan link!</Card.Title>
                 <Row>
-                  <Col sm>
-                    <Button variant="outline-secondary">
-                      <ImCopy />
-                    </Button>
+                    <Col sm>
+                    <CopyToClipboard text={fanLink}
+                      onCopy={() => this.setState({copied: true})}>
+                      <Button variant="outline-primary">
+                        <ImCopy />
+                      </Button>
+                    </CopyToClipboard>
                   </Col>
                   <Col sm>
                     <TwitterShareButton
