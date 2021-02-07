@@ -12,6 +12,7 @@ const initialState = {
   web3: null,
   provider: null,
   connectedWallet: "",
+  ethTransactions: [],
 };
 
 const providerOptions = {
@@ -57,12 +58,10 @@ class App extends Component {
         this.state.connectedWallet +
         "&startblock=0&endblock=99999999&sort=desc&apikey=" +
         process.env.ETHERSCAN_KEY;
-      fetch(fetchURL)
-        .then((response) => response.json())
-        .then((ethTx) => {
-          ethTx = ethTx.result.slice(0, 5);
-          this.setState({ ethTransactions: ethTx });
-        });
+      const response = await fetch(fetchURL);
+      const responseJson = await response.json();
+      // First 5 transactions only.
+      this.setState({ ethTransactions: responseJson.result.slice(0, 5) });
     }
   }
 
@@ -80,8 +79,8 @@ class App extends Component {
       <BrowserRouter>
         <NavHeader
           connectedWallet={this.state.connectedWallet}
-          onWalletConnectClick={() => this.openWalletConnectModal()}
-          onDisconnectWallet={() => this.disconnectWallet()}
+          onWalletConnectClick={this.openWalletConnectModal}
+          onDisconnectWallet={this.disconnectWallet}
         />
         <Switch>
           <Route exact path="/" component={Home} />
