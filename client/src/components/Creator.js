@@ -51,8 +51,9 @@ class Creator extends Component {
     const estimatedBalance = principle * (1 + rate * timeYears);
     return estimatedBalance;
   }
-  changeEstValue(e) {
-    const estimatedBalance = this.calculateInterest(e.target.value);
+
+  changeEstValue(value) {
+    const estimatedBalance = this.calculateInterest(value);
     this.setState({ estimatedFuture: estimatedBalance.toFixed(2) });
   }
 
@@ -204,8 +205,8 @@ class Creator extends Component {
                   size="sm"
                   type="radio"
                   name="options"
-                  defaultValue={1}
-                  onClick={this.changeEstValue}
+                  defaultValue="1"
+                  onChange={this.changeEstValue}
                 >
                   <ToggleButton value="1">1mo</ToggleButton>
                   <ToggleButton value="6">6mo</ToggleButton>
