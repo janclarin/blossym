@@ -6,13 +6,13 @@ export const KOVAN_ID = 42;
 export const MAINNET_ID = 1;
 export const ROPSTEN_ID = 3;
 
+// NOTE: Only kovan has up-to-date addresses. Others may have Aave V1 addresses.
 export default {
   [KOVAN_ID]: {
     // Blossym FanProxy contract.
     fanProxy: "0xA67d64deeF4E93bb3a13292fD66493C5Fa9C4C68",
-    lendingPoolAddressesProvider: "0x506B0B2CF20FAA8f38a4E2B524EE43e1f4458Cc5",
-    lendingPool: "0x580D4Fdc4BF8f9b5ae2fb9225D584fED4AD5375c",
-    lendingPoolCore: "0x95D1189Ed88B380E319dF73fF00E479fcc4CFa45",
+    lendingPoolAddressesProvider: "0x88757f2f99175387aB4C6a4b3067c77A695b0349",
+    lendingPool: "0xE0fBa4Fc209b4948668006B2bE61711b7f465bAe",
     tokens: {
       BAT: "0x2d12186Fbb9f9a8C28B3FfdD4c42920f8539D738",
       DAI: "0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD",
