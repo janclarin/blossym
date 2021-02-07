@@ -136,7 +136,7 @@ class Creator extends Component {
             </Button>
           </div>
 
-          <div class="d-flex justify-content-center mt-4">
+          <div className="d-flex justify-content-center mt-4">
             <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Your balance</Card.Title>
@@ -184,7 +184,7 @@ class Creator extends Component {
               </Card.Body>
             </Card>
           </div>
-          <div class="d-flex justify-content-center mt-4">
+          <div className="d-flex justify-content-center mt-4">
             <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Interest rate</Card.Title>
@@ -215,7 +215,7 @@ class Creator extends Component {
               </Card.Body>
             </Card>
           </div>
-          <div class="d-flex justify-content-around mt-5 col-md-12">
+          <div className="d-flex justify-content-around mt-5 col-md-12">
             <h3> Recent Transactions </h3>
           </div>
           <div className="d-flex justify-content-around mt-5 col-md-12">
