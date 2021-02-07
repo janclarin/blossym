@@ -104,7 +104,7 @@ class Creator extends Component {
     if (!this.props.connectedWallet) {
       page = (
         <div>
-          <div class="d-flex justify-content-center mt-5 col-md-12">
+          <div className="d-flex justify-content-center mt-5 col-md-12">
             <h3>
               {" "}
               You need to connect your wallet before viewing your balance.{" "}
@@ -115,17 +115,19 @@ class Creator extends Component {
     } else {
       page = (
         <Container>
-          <div class="d-flex justify-content-center mt-5 col-md-12">
+          <div className="d-flex justify-content-center mt-5 col-md-12">
             <Button variant="success" size="lg">
               Cash Out
             </Button>
           </div>
 
-          <div class="d-flex justify-content-sm-center mt-5">
+          <div className="d-flex justify-content-sm-center mt-5">
             <Card className="mr-4" style={{ width: "17rem" }}>
               <Card.Body>
                 <Card.Title>Your balance</Card.Title>
-                <Card.Text>{balance}</Card.Text>
+                <Card.Subtitle className="mt-2">
+                  <p className="lead">{balance}</p>
+                </Card.Subtitle>
               </Card.Body>
             </Card>
             <Card style={{ width: "17rem" }}>
@@ -165,10 +167,10 @@ class Creator extends Component {
               </Card.Body>
             </Card>
           </div>
-          <div class="d-flex justify-content-around mt-5 col-md-12">
+          <div className="d-flex justify-content-around mt-5 col-md-12">
             <h3> Recent Transactions </h3>
           </div>
-          <div class="d-flex justify-content-around mt-5 col-md-12">
+          <div className="d-flex justify-content-around mt-5 col-md-12">
             <Table striped bordered hover>
               <thead>
                 <tr>
