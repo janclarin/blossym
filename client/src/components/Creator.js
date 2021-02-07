@@ -13,6 +13,9 @@ import { ImCopy, ImTwitter, ImTelegram } from "react-icons/im";
 import { TwitterShareButton, TelegramShareButton } from "react-share";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Web3 from "web3";
+import TransactionModal, { TransactionModalState } from "./TransactionModal";
+import ILendingPoolContract from "../contracts/ILendingPool.json";
+import { addresses } from "../addresses";
 
 class Creator extends Component {
   constructor(props) {
@@ -20,11 +23,16 @@ class Creator extends Component {
     this.state = {
       ETHinUSD: "0",
       aUSDCBalance: "0",
+      lendingPoolContract: null,
       sentTransactionHash: "",
+      transactionModalState: TransactionModalState.HIDDEN,
       aaveRate: "0",
       estimatedFuture: "0",
     };
+    this.initContract = this.initContract.bind(this);
+    this.cashOut = this.cashOut.bind(this);
     this.changeEstValue = this.changeEstValue.bind(this);
+    this.resetTransactionModal = this.resetTransactionModal.bind(this);
   }
 
   getLink(hash) {
@@ -32,15 +40,46 @@ class Creator extends Component {
   }
 
   cashOut() {
-    // WIP: This only Mocks the real behavior.
     if (this.state.aUSDCBalance === "0") {
       alert("You don't have any funds to cash out");
-    } else {
-      alert(
-        "You've successfully withdrawn your aUSDC and will show up as USDC in your wallet."
-      );
-      this.setState({ aUSDCBalance: "0", estimatedFuture: "0" });
+      return;
     }
+
+    const { connectedWallet } = this.props;
+    const { lendingPoolContract, usdcAddress } = this.state;
+
+    try {
+      lendingPoolContract.methods
+        .withdraw(usdcAddress, -1, connectedWallet)
+        .send({ from: connectedWallet })
+        .once("transactionHash", (hash) => {
+          this.setState({
+            sentTransactionHash: hash,
+            transactionModalState: TransactionModalState.AWAITING_CONFIRMATION,
+          });
+        })
+        .once("receipt", () => {
+          this.setState({
+            transactionModalState: TransactionModalState.CONFIRMED,
+            aUSDCBalance: "0",
+            estimatedFuture: "0",
+          });
+        })
+        .on("error", () => {
+          this.setState({
+            transactionModalState: TransactionModalState.ERROR,
+          });
+        });
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  }
+
+  resetTransactionModal() {
+    this.setState({
+      sentTransactionHash: "",
+      transactionModalState: TransactionModalState.HIDDEN,
+    });
   }
 
   calculateInterest(time) {
@@ -87,13 +126,47 @@ class Creator extends Component {
   }
 
   async componentDidMount() {
-    this.getBalance();
+    await this.getBalance();
     const fetchURLGecko =
       "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum";
     const fetchEthRates = await fetch(fetchURLGecko);
     const ethRatesJson = await fetchEthRates.json();
     const priceInUSD = ethRatesJson[0].current_price;
     this.setState({ ETHinUSD: priceInUSD });
+  }
+
+  componentDidUpdate = async (prevProps) => {
+    if (
+      this.props.provider !== prevProps.provider ||
+      !this.state.lendingPoolContract
+    ) {
+      await this.initContract();
+    }
+  };
+
+  async initContract() {
+    const { provider } = this.props;
+    if (!provider || this.state.lendingPoolContract) {
+      return;
+    }
+
+    try {
+      const web3 = new Web3(provider);
+      const networkId = await web3.eth.net.getId();
+      const lendingPoolAddress = addresses[networkId].lendingPool;
+      const instance = new web3.eth.Contract(
+        ILendingPoolContract.abi,
+        lendingPoolAddress
+      );
+
+      this.setState({
+        lendingPoolContract: instance,
+        usdcAddress: addresses[networkId].tokens.USDC,
+      });
+    } catch (error) {
+      // Catch any errors for any of the above operations.
+      console.error(error);
+    }
   }
 
   getValue(weiVal) {
@@ -131,7 +204,7 @@ class Creator extends Component {
       page = (
         <Container>
           <div className="d-flex justify-content-center mt-5 col-md-12">
-            <Button variant="success" size="lg">
+            <Button variant="success" size="lg" onClick={this.cashOut}>
               Cash Out
             </Button>
           </div>
@@ -246,6 +319,12 @@ class Creator extends Component {
               </tbody>
             </Table>
           </div>
+          <TransactionModal
+            confirmedText="You've successfully withdrawn your aUSDC. It now will show up as USDC in your wallet."
+            modalState={this.state.transactionModalState}
+            transactionHash={this.state.sentTransactionHash}
+            onHide={this.resetTransactionModal}
+          />
         </Container>
       );
     }
