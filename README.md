@@ -8,10 +8,6 @@ Blossym is currently running on the Kovan Ethereum test network. [Made](https://
 
 ## Features
 
-### Home page
-
-Fans can select from highlighted creators on the home page, as well as access the fan donation box directly from the creator via a URL.
-
 ### Fan page
 
 Fans donate ETH to their favorite artists, musicians, podcasters, writers, journalists, and other creators. They do so by entering the creator's ETH wallet address and the amount they want to donate. The donated ETH is then swapped into USDC via Uniswap and deposited into AAVE's lending pool on behalf of the creator, so the newly minted aUSDC (interest-bearing USDC) is sent to the creator's ETH wallet address.
