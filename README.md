@@ -2,7 +2,7 @@
 
 [Blossym](https://blossym.org) is a platform for fans to donate to creators they want to support and for creators to automatically earn yield on those fan donations, all in one place. Blossym enables uncensorable, simple donations with no middle-men taking a cut so that fan donations directly reach their favorite creators.
 
-Blossym is currently running on the Kovan Ethereum test network.
+Blossym is currently running on the Kovan Ethereum test network. [Made](https://hack.ethglobal.co/showcase/blossym-recuZRZSYdWwKrHIp) for the [ETHGlobal MarketMake](https://marketmake.ethglobal.co/) hackathon.
 
 [Demo video](https://www.youtube.com/watch?v=AclzZes5dUI)
 
