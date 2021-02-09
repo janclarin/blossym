@@ -1,5 +1,25 @@
 # Blossym
 
+[Blossym](https://blossym.org) is a platform for fans to donate to creators they want to support and for creators to automatically earn yield on those fan donations, all in one place. Blossym enables uncensorable, simple donations with no middle-men taking a cut so that fan donations directly reach their favorite creators.
+
+Blossym is currently running on the Kovan Ethereum test network. [Made](https://hack.ethglobal.co/showcase/blossym-recuZRZSYdWwKrHIp) for the [ETHGlobal MarketMake](https://marketmake.ethglobal.co/) hackathon.
+
+[Demo video](https://www.youtube.com/watch?v=AclzZes5dUI)
+
+## Features
+
+### Fan page
+
+Fans donate ETH to their favorite artists, musicians, podcasters, writers, journalists, and other creators. They do so by entering the creator's ETH wallet address and the amount they want to donate. The donated ETH is then swapped into USDC via Uniswap and deposited into AAVE's lending pool on behalf of the creator, so the newly minted aUSDC (interest-bearing USDC) is sent to the creator's ETH wallet address.
+
+### Creator page
+
+Creators can view their aUSDC balance recent fan ETH donations, aUSDC interest rates, and estimated future earnings. They can also "cash out" their aUSDC which burns the aUSDC tokens to redeem USDC. Most importantly, they can easily share their fan donation link to either Twitter or Telegram, or by copying the URL. The creator's wallet address is automatically populated when a fan clicks the link.
+
+### Future
+
+In the future, we plan to allow creators to choose among different investment and asset allocation options, as well as allow creators to convert their USDC into USD in one-click. Additionally, we want to provide even more information to the creator, such as a chart to easily view balance changes. Lastly, we also plan to enable fan donations in different cryptocurrencies.
+
 ## Development setup
 
 ### Install dependencies
