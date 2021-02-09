@@ -60,7 +60,14 @@ class NavHeader extends Component {
               <Nav.Link>Creator</Nav.Link>
             </LinkContainer>
           </Nav>
-
+          <Nav className="ml-auto mr-2">
+            <Nav.Link
+              className="ml-auto"
+              href="https://github.com/janclarin/blossym"
+            >
+              GitHub
+            </Nav.Link>
+          </Nav>
           <Nav className="justify-content-end">{walletButton}</Nav>
         </Container>
       </Navbar>
